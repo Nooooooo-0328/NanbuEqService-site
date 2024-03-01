@@ -133,4 +133,4 @@ async function display_Earthquake_Info() {
   }
 }
 
-display_Earthquake_Info()
+setInterval(display_Earthquake_Info, 5000)

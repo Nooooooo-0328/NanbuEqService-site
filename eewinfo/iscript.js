@@ -56,4 +56,4 @@ async function displayData() {
     }
 }
 
-displayData()
+setInterval(displayData, 5000)
