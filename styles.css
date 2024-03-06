@@ -43,6 +43,11 @@ section {
   animation: fadeIn 1s ease forwards;
 }
 
+img {
+  max-width: 100%; 
+  height: auto; 
+}
+
 @keyframes fadeIn {
   from {
       opacity: 0;
