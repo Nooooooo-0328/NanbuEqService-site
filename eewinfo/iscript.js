@@ -1,10 +1,29 @@
+function convertType(issue_) {
+    switch (issue_) {
+      case "ScalePrompt":
+          return "震度速報"
+        case "Destination":
+          return "震源に関する情報"
+        case "ScaleAndDestination":
+          return "震源 ・ 震度に関する情報"
+        case "DetailScale":
+          return "各地の震度に関する情報"
+        case "Foreign":
+          return "遠地地震に関する情報"
+        case _:
+          return "その他"
+      }
+}
+
 async function fetchData() {
     try {
         const response = await fetch('https://api.p2pquake.net/v2/history?codes=551&limit=1');
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error:', error);
+        console.error('プログラムエラー:', error);
+        document.getElementById("earthquake-info").innerHTML = `<h2><font color="red">プログラムエラーが発生しています。</font><br>一番下までスクロールし、プログラムエラー情報を確認してください。</h2>`;
+        document.getElementById("earthquake--info").innerHTML = `<h2>地震情報機能: <font color="red">${error}</font></h2>`;
         return null;
     }
 }
@@ -23,7 +42,11 @@ async function displayData() {
 
     const data = await fetchData();
 
-    if (data) {
+    const issue = data[0].issue;
+    const issue_ = issue.type
+    const type = convertType(issue_);
+
+    if (data && data[0]['points'].length > 0) {
         for (var i = 0; i < data[0]['points'].length; i++) {
             var point = data[0]['points'][i];
             if (point['scale'] in scales) {
@@ -52,8 +75,9 @@ async function displayData() {
         }
         document.getElementById("points-info").innerHTML = `<h2>${pointsText + pointsDisplayText}</h2>`;
     } else {
-        document.getElementById("points-info").innerHTML = "データを取得できませんでした。";
+        document.getElementById("points-info").innerHTML = `<h2>■各地の震度情報</h2><br><h2>${type}のため、各地の震度情報の発表はありません。<br>各地の震度情報が発表されているのに、表示されていない場合、本サイトのプログラムエラーが原因の可能性があります。</h2>`;
     }
 }
+
 
 setInterval(displayData, 5000)

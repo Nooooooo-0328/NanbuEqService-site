@@ -1,5 +1,3 @@
-const apiUrl = 'https://api.p2pquake.net/v2/history?codes=551&limit=1';
-
 const tsunamiLevels = {
     'None': 'この地震による津波の心配はありません。',
     'Unknown': '津波の影響は不明です。',
@@ -11,11 +9,13 @@ const tsunamiLevels = {
 
 async function fetchEarthquakeInfo() {
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch('https://api.p2pquake.net/v2/history?codes=551&limit=1');
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error:', error);
+        console.error('プログラムエラー:', error);
+        document.getElementById("points-info").innerHTML = `<h2><font color="red">プログラムエラーが発生しています。</font><br>一番下までスクロールし、プログラムエラー情報を確認してください。</h2>`;
+        document.getElementById("points--info").innerHTML = `<h2>各地の震度情報機能: <font color="red">${error}</font></h2>`;
         return null;
     }
 }
@@ -31,25 +31,25 @@ function displayTsunamiInfo(domesticTsunami) {
 function convertMaxScaleToShindo(maxScale) {
     switch (maxScale) {
         case -1:
-            return "不明";
+            return "-";
         case 10:
-            return "震度1";
+            return "1";
         case 20:
-            return "震度2";
+            return "2";
         case 30:
-            return "震度3";
+            return "3";
         case 40:
-            return "震度4";
+            return "4";
         case 45:
-            return "震度5弱";
+            return "5弱";
         case 50:
-            return "震度5強";
+            return "5強";
         case 55:
-            return "震度6弱";
+            return "6弱";
         case 60:
-            return "震度6強";
+            return "6強";
         case 70:
-            return "震度7";
+            return "7";
         default:
             return "不明";
     }
