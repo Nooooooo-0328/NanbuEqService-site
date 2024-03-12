@@ -79,5 +79,4 @@ async function displayData() {
     }
 }
 
-
 setInterval(displayData, 5000)
