@@ -58,17 +58,17 @@ function convertMaxScaleToShindo(maxScale) {
 function convertType(issue_) {
 switch (issue_) {
   case "ScalePrompt":
-      return "【震度速報】"
+      return "震度速報"
     case "Destination":
-      return "【震源に関する情報】"
+      return "震源に関する情報"
     case "ScaleAndDestination":
-      return "【震源・震度に関する情報】"
+      return "震源・震度に関する情報"
     case "DetailScale":
-      return "【各地の震度に関する情報】"
+      return "各地の震度に関する情報"
     case "Foreign":
-      return "【遠地地震に関する情報】"
+      return "遠地地震に関する情報"
     case _:
-      return "【その他】"
+      return "その他"
   }
 }
 
@@ -119,7 +119,7 @@ async function display_Earthquake_Info() {
       }
 
       earthquakeInfoDiv.innerHTML = `
-          <h2>${type}</h2>
+          <h2>【${type}】</h2>
           <h2>■発生時刻<br>${day}日${hours}時${minutes}分</h2>
           <h2>■震源地<br>${singen}</h2>
           <h2>■規模<br>${magu}</h2>
