@@ -1,3 +1,8 @@
+document.getElementById("chatbot-btn").addEventListener("click", function(event){
+  // ChatBOTが表示される画面へのリンクを追加する
+  window.location.href = "ChatBOT/index.html"; // chatbot.html は実際のリンク先に合わせて変更してください
+});
+
 window.addEventListener('resize', function() {
   adjustFooterFontSize();
 });

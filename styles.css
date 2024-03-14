@@ -48,6 +48,27 @@ img {
   height: auto; 
 }
 
+.chatbot-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 18px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  z-index: 1000; /* 他の要素よりも手前に表示する */
+}
+
+.chatbot-btn:hover {
+  background-color: #0056b3;
+}
+
 @keyframes fadeIn {
   from {
       opacity: 0;
