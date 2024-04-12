@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nanbu Eq Service for web 地震情報</title>
+  <meta name="description" content="Nanbu Eq Service for web 地震情報のサイトです。">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Nanbu Eq Service for web 地震情報</h1>
+    </header>
+    <main>
+      <p style="color: red;">※5秒毎に情報を取得しています。<br></p>
+        現在時刻: <h2><span id="current-time">----/--/-- --:--:--</span></h2>
+        <section id="">
+          <div id="earthquake-info"><h2>地震情報を取得中...</h2></div>
+        </section>
+        <section id="">
+          <div id="points-info"><h2>地震情報を取得中...</h2></div>
+          ← <a href="/X-post/index.html">Nanbu Eq Service for web 地震情報(X)用はこちら (各地の震度情報のみ表示)</a></li><br>
+          ← <a href="../index.html">NanbuEqServiceのサイトに戻る</a></li>
+        </section>
+        <section id="">
+          <h2><p style="color: red;">プログラムエラー情報</p></h2>
+          <h3>本サイトでプログラムエラーが発生したらここに表示されます。</h3><br>
+          <div id="earthquake--info"><h2>地震情報機能: エラーなし</h2></div>
+          <div id="points--info"><h2>各地の震度情報機能: エラーなし</h2></div>
+        </section>
+      </main>
+  <footer>
+    <p>&copy; 2021 - 2024 Nanbu Eq Service</p>
+</footer>
+<script src="script.js"></script>
+<script src="iscript.js"></script>
+<script src="time.js"></script>
+</html>
