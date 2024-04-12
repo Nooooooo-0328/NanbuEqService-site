@@ -73,7 +73,7 @@ switch (issue_) {
 }
 
 async function display_Earthquake_Info() {
-  const earthquakeInfoDiv = document.getElementById('earthquake-info');
+  const earthquakeInfoDiv = document.getElementById('earthquake-timeinfo');
   const data = await fetchEarthquakeInfo();
 
   if (data && data.length > 0) {
@@ -97,7 +97,7 @@ async function display_Earthquake_Info() {
       var minutes_ = ('0' + date.getMinutes()).slice(-2);
 
 
-      var timeDifference = Math.floor((currentTime - date) / 1000); 
+      var timeDifference = Math.floor((currentTime - date) / 1000); // ミリ秒を秒に変換
       
       if (timeDifference < 60) {
           timeo = timeDifference + "秒前";
@@ -137,15 +137,7 @@ async function display_Earthquake_Info() {
           hukasa = `約${earthquake.hypocenter.depth}km`;
       }
 
-      earthquakeInfoDiv.innerHTML = `
-          <h2>【${type}】</h2>
-          <h2>■発生時刻<br>${day_}日${hours_}時${minutes_}分 (約${timeo})</h2>
-          <h2>■震源地<br>${singen}</h2>
-          <h2>■規模<br>${magu}</h2>
-          <h2>■深さ<br>${hukasa}</h2>
-          <h2>■最大震度<br>${shindo}</h2>
-          <h2>■津波有無<br>${tsunamiInfo}</h2>
-      `;
+      earthquakeInfoDiv.innerHTML = `${day_}日${hours_}時${minutes_}分 (約${timeo}) ごろ、発生した地震情報(${type})の各地の震度情報を表示しています。`;
 
   } else {
       earthquakeInfoDiv.innerHTML = 'Error';
