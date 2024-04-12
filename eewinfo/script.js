@@ -87,14 +87,33 @@ async function display_Earthquake_Info() {
       const shindo = convertMaxScaleToShindo(earthquake.maxScale);
       const type = convertType(issue_);
 
+      var currentTime = new Date();
       var date = new Date(earthquake.time);
 
-      var day = ('0' + date.getDate()).slice(-2);
+      var day_ = ('0' + date.getDate()).slice(-2);
 
-      var hours = ('0' + date.getHours()).slice(-2);
+      var hours_ = ('0' + date.getHours()).slice(-2);
 
-      var minutes = ('0' + date.getMinutes()).slice(-2);
+      var minutes_ = ('0' + date.getMinutes()).slice(-2);
 
+
+      var timeDifference = Math.floor((currentTime - date) / 1000); // ミリ秒を秒に変換
+      
+      if (timeDifference < 60) {
+          timeo = timeDifference + "秒前";
+      } else if (timeDifference < 3600) {
+          var minutes = Math.floor(timeDifference / 60);
+          timeo = minutes + "分前";
+      } else if (timeDifference < 86400) {
+          var hours = Math.floor(timeDifference / 3600);
+          var remainingMinutes = Math.floor((timeDifference % 3600) / 60);
+          timeo = hours + "時間" + remainingMinutes + "分前";
+      } else {
+          var days = Math.floor(timeDifference / 86400);
+          var remainingHours = Math.floor((timeDifference % 86400) / 3600);
+          timeo = days + "日前 " + remainingHours + "時間前";
+      }
+      
       let singen = '';
       let singenJ = '';
       let magu = '';
@@ -120,7 +139,7 @@ async function display_Earthquake_Info() {
 
       earthquakeInfoDiv.innerHTML = `
           <h2>【${type}】</h2>
-          <h2>■発生時刻<br>${day}日${hours}時${minutes}分</h2>
+          <h2>■発生時刻<br>${day_}日${hours_}時${minutes_}分 (約${timeo})</h2>
           <h2>■震源地<br>${singen}</h2>
           <h2>■規模<br>${magu}</h2>
           <h2>■深さ<br>${hukasa}</h2>

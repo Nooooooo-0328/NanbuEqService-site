@@ -54,7 +54,7 @@ async function displayData() {
                 var pointName = point['pref'];
 
                 if (points[scale] === "") {
-                    points[scale] = points[scale] + "<br><br>[震度" + scalesText[point['scale']] + "]";
+                    points[scale] = points[scale] + "<br>[震度" + scalesText[point['scale']] + "]";
                 }
 
                 if (!pointNameList[scale].includes(pointName)) {
