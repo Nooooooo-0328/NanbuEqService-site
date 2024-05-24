@@ -3,114 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nanbu Eq Service Bot プログラム 販売・貸出</title>
-    <meta name="description" content="Nanbu Eq Service Botプログラムに関するサイトです。">
-    <link rel="stylesheet" href="../styles.css">
+    <title>Nanbu Eq Service Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .maintenance-container {
+            max-width: 600px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 1s ease;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Nanbu Eq Service Bot プログラム 販売・貸出</h1>
-    </header>
-    <main>
+    <div class="maintenance-container">
+        <h1>Nanbu Eq Service Site メンテナンス・リニューアル中...</h1>
+        申し訳ありませんが、現在 Nanbu Eq Service Site はメンテナンス・リニューアル中です。ご迷惑をおかけして申し訳ございません。
+        <h1>メンテナンス情報</h1>
+        <p id="maintenance-info"></p>
+        <p id="elapsed-time"></p>
+    </div>
 
+    <script>
+        function updateTime() {
+            var startTime = new Date('2024-05-25T00:00:00'); 
+            var currentTime = new Date(); 
 
-        <section id="">
-          <h1><p style="color: red;">まだ公開向けには実施していません。</p></h1>
-          <h2>Nanbu Eq Service Botプログラム 購入又は貸出 (未定)</h2>
-          Nanbu Eq Service Botプログラムを販売又は貸出することを検討中です。<br>
-          どのSNSで投稿させたいか(各SNSリスト内で)購入者が決めることができます。 <br>
+            var timeUntilMaintenance = startTime - currentTime; 
+            var elapsedTime = currentTime - startTime; 
 
-          <h2>※料金は予告なく変更される場合があります</h2>
-            料金が変更された場合、変更された日から新料金が適用されるものとします。<br>
-            月々払いの場合、翌月の25日から新料金が適用されるものとします。
+            var messageUntilMaintenance = '';
+            if (timeUntilMaintenance > 0) {
+                var daysUntilMaintenance = Math.floor(timeUntilMaintenance / (1000 * 60 * 60 * 24));
+                messageUntilMaintenance = 'メンテナンス開始まであと ';
+                if (daysUntilMaintenance > 0) {
+                    messageUntilMaintenance += daysUntilMaintenance + ' 日';
+                }
+                var minutesUntilMaintenance = Math.floor((timeUntilMaintenance / (1000 * 60)) % 60);
+                messageUntilMaintenance += ' ' + minutesUntilMaintenance + ' 分です。';
+            } else {
+                messageUntilMaintenance = 'メンテナンスは既に開始しています。';
+            }
 
+            var messageElapsedTime = '';
+            if (elapsedTime >= 0) {
+                var days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+                var minutes = Math.floor((elapsedTime / (1000 * 60)) % 60); 
+                messageElapsedTime = '開始から ' + days + ' 日 ' + hours + ' 時間 ' + minutes + ' 分 が経過しました。';
+            } else {
+                messageElapsedTime = 'メンテナンスはまだ開始していません。';
+            }
 
-          <h2>注意</h2>
+            var maintenanceInfoParagraph = document.getElementById('maintenance-info');
+            var elapsedTimeParagraph = document.getElementById('elapsed-time');
+            maintenanceInfoParagraph.innerHTML = messageUntilMaintenance;
+            elapsedTimeParagraph.innerHTML = messageElapsedTime;
+        }
 
-          <p style="color: red;"><li>本プログラムを稼働させるためには、Pythonがダウンロードされている環境が<strong>必要</strong>です。</li>
-          <li>本プログラムを稼働させるためには、各SNSのAPIキーが<strong>必要</strong>です。</li>
-          <li>震度分布の添付投稿機能は含まれておりませんので、ご注意ください。</li>
-          <li>各SNS以外でのBotプログラム要望は受付しておりません。</li>
-          <li>Misskeyで投稿する場合インスタンスは <strong>misskey.io</strong> のみになります。</li>
-          ※本プログラムを扱うには、最低限のプログラミング知識が必要です。<br>
-          ※本プログラムはWindowsOS環境で稼働させることを想定して開発されています。<br>
-          WindowsOS以外での稼働確認は行っておりませんので、ご注意ください。<br>
-          ※環境の設定及びAPIキーの発行等はご自身で行って頂きますようよろしくお願い申し上げます。</p>
+        updateTime();
 
-
-          <h2>Nanbu Eq Service Botプログラム について</h2>
-          <h4>開発言語</h4>
-          <li>Python</li>
-
-          <h4>サポート</h4>
-          <li>新機能を搭載したアップデートを団体、個人関係なく、不定期で無償で提供します。</li>
-          <li>プログラムエラーが出た際など完全サポート(DMにて)します。</li>
-          <li>その他わからないことはDMへお送りください。</li>
-
-          <h2>料金</h2>
-          <h3>購入の場合</h3>
-
-          <p style="color: red;"><h4>Botプログラム   |  団体向け</h4></p>
-          <h5>※購入時、団体名をお申し付けください。</h5>
-          <h5>購入の場合</h5>
-            <li>1回払い: 2100円</li>
-          <h5>貸出の場合</h5>
-            <li>月々払い: 1100円</li>
-
-            <p style="color: red;"><h4>Botプログラム  |  個人向け</h4></p>
-          <h5>購入の場合</h5>
-            <li>1回払い: 1000円</li>
-          <h5>貸出の場合</h5>
-            <li>月々払い: 500円</li>
-
-            <p style="color: red;"><h4>機能要望等   |  団体向け</h4></p>
-          <h5>機能導入の場合</h5>
-            <li>1回払い: 機能により金額が決まります</li>
-          <h5>各SNS以外でのBotプログラム要望の場合</h5>
-            <li>1回払い: 0円～1000円</li>
-
-          <h2>お支払いに関して</h2>
-          購入者から<strong>先払い</strong>して頂きます。<br>
-          <p style="color: red;">※先払いが不安な方はお取引することが出来ません。</p>
-
-          <h2>お支払い方法に関して</h2>
-            <li>PayPay</li>
-            <li>その他 (話し合いで決める)</li>
-
-          <h2>お支払い期限に関して</h2>
-          <h3>機能要望等(団体向け)で発生した料金はその日にお支払いください。</h3>
-          <h4>購入の場合</h4>
-          <li>プログラムファイルを渡す直前にお支払い下さい。</li>
-          <h4>貸出の場合</h4>
-          <li>毎月25日にお支払い下さい。</li>
-
-          <h2>プログラムの渡し方に関して</h2>
-            お支払いの確認ができましたら、DiscordのDMでお渡しいたします。<br>
-            <p style="color: red;">※Discord以外でのお渡しは行っておりません。</p>
-
-          <h2><p style="color: red;">返品・返金について</p></h2>
-          <p style="color: red;">デジタルコンテンツという関係上、返品・返金には応じられません。</p>
-
-          <h2>これらをお読みいただいた上で依頼する方、もしくはお問い合わせの方はこちら</h2>
-          X (Twitter): @Nooooooo_0328 までお願い致します。
-                                                            
-
-      </section>
-
-
-      <section id="">
-        <h2>Q&A</h2>
-
-        <h2>なぜ団体向けと個人向けの金額が異なるのですか？</h2>
-
-        <li>団体向けにはリモートデスクトップ等を使ったサポートを行います。</li>
-        <li>団体向けには優先的にサポートを行います。</li>
-        <li>団体向けには Nanbu Eq Service for web 震度分布Botバージョン の添付投稿機能が付いています。</li>
-
-    </section>
-
-    ← <a href="../index.html">NanbuEqServiceのサイトに戻る</a></li>
-    </main>
-    <footer>
-        <p>&copy; 2021 - 2024 Nanbu Eq Service</p>
+        setInterval(updateTime, 60000);
+    </script>
+</body>
 </html>

@@ -3,32 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nanbu Eq Service Botプログラム</title>
-    <meta name="description" content="Nanbu Eq Service Botプログラムに関するサイトです。">
-    <link rel="stylesheet" href="../styles.css">
+    <title>Nanbu Eq Service Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .maintenance-container {
+            max-width: 600px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 1s ease;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Nanbu Eq Service Botプログラム</h1>
-    </header>
-    <main>
-        <section id="">
-            <h2>Nanbu Eq Service Botプログラム</h2>
-            Nooooooo が Python を使用し開発しました。<br>
-            このプログラムでは以下の機能が搭載されています。<br>
-            <li>ネット再接続機能</li>
-            <li>地震情報送信機能</li>
-            <li>条件付きでの地震情報送信</li>
-            <li>TwitterAPI制限を回避するための対策措置</li>
-            <li>その他諸々機能搭載</li>
-            <h3>以下のSNS(以下: 各SNS)で投稿されます。</h3>
-            <li>X (Twitter)</li>
-            <li>Misskey</li>
-            <li>Bluesky</li>
-          </section>
+    <div class="maintenance-container">
+        <h1>Nanbu Eq Service Site メンテナンス・リニューアル中...</h1>
+        申し訳ありませんが、現在 Nanbu Eq Service Site はメンテナンス・リニューアル中です。ご迷惑をおかけして申し訳ございません。
+        <h1>メンテナンス情報</h1>
+        <p id="maintenance-info"></p>
+        <p id="elapsed-time"></p>
+    </div>
 
-    ← <a href="../index.html">NanbuEqServiceのサイトに戻る</a></li>
-    </main>
-    <footer>
-        <p>&copy; 2021 - 2024 Nanbu Eq Service</p>
+    <script>
+        function updateTime() {
+            var startTime = new Date('2024-05-25T00:00:00'); 
+            var currentTime = new Date(); 
+
+            var timeUntilMaintenance = startTime - currentTime; 
+            var elapsedTime = currentTime - startTime; 
+
+            var messageUntilMaintenance = '';
+            if (timeUntilMaintenance > 0) {
+                var daysUntilMaintenance = Math.floor(timeUntilMaintenance / (1000 * 60 * 60 * 24));
+                messageUntilMaintenance = 'メンテナンス開始まであと ';
+                if (daysUntilMaintenance > 0) {
+                    messageUntilMaintenance += daysUntilMaintenance + ' 日';
+                }
+                var minutesUntilMaintenance = Math.floor((timeUntilMaintenance / (1000 * 60)) % 60);
+                messageUntilMaintenance += ' ' + minutesUntilMaintenance + ' 分です。';
+            } else {
+                messageUntilMaintenance = 'メンテナンスは既に開始しています。';
+            }
+
+            var messageElapsedTime = '';
+            if (elapsedTime >= 0) {
+                var days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+                var minutes = Math.floor((elapsedTime / (1000 * 60)) % 60); 
+                messageElapsedTime = '開始から ' + days + ' 日 ' + hours + ' 時間 ' + minutes + ' 分 が経過しました。';
+            } else {
+                messageElapsedTime = 'メンテナンスはまだ開始していません。';
+            }
+
+            var maintenanceInfoParagraph = document.getElementById('maintenance-info');
+            var elapsedTimeParagraph = document.getElementById('elapsed-time');
+            maintenanceInfoParagraph.innerHTML = messageUntilMaintenance;
+            elapsedTimeParagraph.innerHTML = messageElapsedTime;
+        }
+
+        updateTime();
+
+        setInterval(updateTime, 60000);
+    </script>
+</body>
 </html>

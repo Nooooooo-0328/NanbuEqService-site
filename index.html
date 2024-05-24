@@ -1,87 +1,95 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nanbu Eq Service Site</title>
-  <meta name="description" content="Nanbu Eq Service のサイトです。">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanbu Eq Service Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .maintenance-container {
+            max-width: 600px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 1s ease;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Nanbu Eq Service Site</h1>
-    </header>
+    <div class="maintenance-container">
+        <h1>Nanbu Eq Service Site メンテナンス・リニューアル中...</h1>
+        申し訳ありませんが、現在 Nanbu Eq Service Site はメンテナンス・リニューアル中です。ご迷惑をおかけして申し訳ございません。
+        <h1>メンテナンス情報</h1>
+        <p id="maintenance-info"></p>
+        <p id="elapsed-time"></p>
+    </div>
 
-    <a href="#" id="chatbot-btn" class="chatbot-btn">
-      βChat
-    </a>
+    <script>
+        function updateTime() {
+            var startTime = new Date('2024-05-25T00:00:00'); 
+            var currentTime = new Date(); 
 
-    <main>
+            var timeUntilMaintenance = startTime - currentTime; 
+            var elapsedTime = currentTime - startTime; 
 
-        <section id="">
-          <h2>Nanbu Eq Service とは</h2>
-          <p>Noooooooが開発したプログラムを使い自動に地震情報を投稿するBotサービスのことです。</p>
-          <p>Nanbu Eq Service のBotプログラムに興味がある方はこちら: <a href="Program/index.html" id="myLink">Nanbu Eq Service のBotプログラムについて</a></p>
-        </section>
+            var messageUntilMaintenance = '';
+            if (timeUntilMaintenance > 0) {
+                var daysUntilMaintenance = Math.floor(timeUntilMaintenance / (1000 * 60 * 60 * 24));
+                messageUntilMaintenance = 'メンテナンス開始まであと ';
+                if (daysUntilMaintenance > 0) {
+                    messageUntilMaintenance += daysUntilMaintenance + ' 日';
+                }
+                var minutesUntilMaintenance = Math.floor((timeUntilMaintenance / (1000 * 60)) % 60);
+                messageUntilMaintenance += ' ' + minutesUntilMaintenance + ' 分です。';
+            } else {
+                messageUntilMaintenance = 'メンテナンスは既に開始しています。';
+            }
 
-        <section id="">
-          <h2>Nanbu Eq Service がBot運用を行っているSNSサービス一覧</h2>
-          <li>X(Twitter): <a href="https://x.com/NanbuEqService">@NanbuEqService</a>(ほぼ毎日稼働中)</li>
-          <li>Misskey: <a href="https://misskey.io/@NanbuEqService">@NanbuEqService</a>(ほぼ毎日稼働中)</li>
-          <li>Bluesky: <a href="https://bsky.app/profile/nanbueqservice.bsky.social">@nanbueqservice.bsky.social</a>(ほぼ毎日稼働中)</li>
-        
-          <h2>Nanbu Eq Service がBot運用を予定しているSNSサービス一覧</h2>
-          <li>Threads: <a href="https://www.threads.net/@nanbueqservice?igshid=MzRlODBiNWFlZA==">@nanbueqservice </a></li>
-          ※ThreadsのAPIが公開され次第、運用を開始する予定です。
-        </section>
+            var messageElapsedTime = '';
+            if (elapsedTime >= 0) {
+                var days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+                var minutes = Math.floor((elapsedTime / (1000 * 60)) % 60); 
+                messageElapsedTime = '開始から ' + days + ' 日 ' + hours + ' 時間 ' + minutes + ' 分 が経過しました。';
+            } else {
+                messageElapsedTime = 'メンテナンスはまだ開始していません。';
+            }
 
-        <section id="">
-          <h2>お知らせ</h2>
-          <h5>お知らせ5件まで表示</h5>
-          <li><a href="Announcement/html_20240301_1.html">2024/3/1 Nanbu Eq Service 震度分布 の名称を変更しました。</a></li>
-          <li><a href="Announcement/html_20240301_0.html">2024/3/1 Nanbu Eq Service for web 地震情報 を開発しました。</a></li>
-          <li><a href="Announcement/html_20240227_0.html">2024/2/27 Nanbu Eq Service のサイトを公開しました。</a></li>
-        </section>
+            var maintenanceInfoParagraph = document.getElementById('maintenance-info');
+            var elapsedTimeParagraph = document.getElementById('elapsed-time');
+            maintenanceInfoParagraph.innerHTML = messageUntilMaintenance;
+            elapsedTimeParagraph.innerHTML = messageElapsedTime;
+        }
 
-        <section id="">
-          <h2><s>Nanbu Eq Service Botプログラムの購入 又は 貸出 </h2></s><p style="color: red;">(有償)  (予定)</p></h2>
-          <p>Noooooooが開発したプログラムを使い、誰でも自動に地震情報を投稿するBotを運用することができます。</p>
-          <p>詳しくはこちら: <a href="sale/index.html" id="myLink">Nanbu Eq Service Bot プログラム 販売・貸出について</a></p>
-        </section>
+        updateTime();
 
-        <section id="">
-          <h2>Nanbu Eq Serviceの歴史</h2>
-          <p>Nanbu Eq Service のサービス開始から今までの履歴をまとめた記事です。</p>
-          <p>こちらから読むことができます: <a href="History/index.html" id="myLink">Nanbu Eq Service の歴史</a></p>
-        </section>
-        
-        <section id="">
-          <h2>Nanbu Eq Service for web 震度分布</h2>
-          <p>Noooooooが開発したサイト上で地震情報&震度分布を確認することができるサイトのことです。</p>
-          <p>こちらから利用することができます: <a href="https://nooooooo-0328.github.io/NanbuEqService-site-jisin/" id="myLink">Nanbu Eq Service for web 震度分布</a></p>
-        </section>
-
-        <section id="">
-          <h2>Nanbu Eq Service for web 地震情報</h2>
-          <p>Noooooooが開発したサイト上で地震情報を確認することができるサイトのことです。</p>
-          <p>こちらから利用することができます: <a href="eewinfo/index.html" id="myLink">Nanbu Eq Service for web 地震情報</a></p>
-        </section>
-
-        <section id="">
-          <h2>各リスト (現在作成中)</h2>
-          <p><a href="everylist/eew.html" id="myLink">緊急地震速報が出た際に行動すること リストはこちら</a></p>
-          <p><a href="everylist/Tsunami.html" id="myLink">津波情報が出た際に行動すること リストはこちら</a></p>
-        </section>
-
-        <section id="">
-          <h2>お問い合わせ</h2>
-          <p>NoooooooのDMへお願いいたします。</p>
-        </section>
-
-    </main>
-    <footer>
-        <p>&copy; 2021 - 2024 Nanbu Eq Service</p>
-    </footer>
-    <script src="script.js"></script>
+        setInterval(updateTime, 60000);
+    </script>
 </body>
 </html>
